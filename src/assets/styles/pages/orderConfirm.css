@@ -1,0 +1,129 @@
+/* src/assets/styles/order-confirmation.css */
+.order-confirmation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.order-confirmation-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.order-details-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.order-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-details-number {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.order-details-date {
+  color: #666;
+}
+
+.order-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.order-status-paid {
+  background-color: #e6f3e6;
+  color: #2e7d32;
+}
+
+.order-status-pending {
+  background-color: #fff3e0;
+  color: #ed6c02;
+}
+
+.order-items-section {
+  margin-top: 15px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item-details {
+  flex-grow: 1;
+}
+
+.order-item-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.order-item-quantity {
+  color: #666;
+  font-size: 14px;
+}
+
+.order-item-price {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.order-total-section {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.shipping-address-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.shipping-address-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  text-align: center;
+}
+
+.error-container {
+  color: #d32f2f;
+  background-color: #ffebee;
+}

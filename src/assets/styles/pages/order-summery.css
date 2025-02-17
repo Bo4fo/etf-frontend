@@ -1,0 +1,531 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.checkout {
+  background-color: #000000;
+}
+
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 20px; */
+  background-color: #000000;
+}
+
+.checkout h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.checkout h2 {
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .checkout-grid {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.checkout .login-register-banner {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.checkout .login-register-btn {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout .login-register-btn:hover {
+  background-color: #0056b3;
+}
+
+.checkout .checkout-form {
+  border-right: solid 0.1px rgba(255, 255, 255, 0.692);
+  padding: 10px;
+}
+.checkout .form-section {
+  margin-bottom: 2rem;
+}
+
+.checkout .form-group {
+  margin-bottom: 1rem;
+}
+
+.checkout label {
+  display: block;
+  font-size: 13px;
+  font-family: monospace;
+  /* margin-bottom: 0.5rem; */
+  color: white;
+}
+
+.checkout input[type="text"],
+.checkout input[type="email"],
+.checkout input[type="tel"],
+.checkout select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 13px;
+  background-color: #000000;
+  color: white;
+}
+
+.checkout input[type="text"]:focus,
+.checkout input[type="email"]:focus,
+.checkout input[type="tel"]:focus,
+.checkout select:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.checkout .checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkout .checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.checkout .name-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.checkout .method-name {
+  font-weight: bold;
+  color: white;
+}
+
+.checkout .method-description {
+  font-size: 12px;
+  color: white;
+}
+
+.checkout .method-price {
+  font-weight: 500;
+  color: white;
+}
+
+.checkout .item-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.exchange-info {
+  padding: 1rem;
+  background-color: #282463;
+  border-radius: 0.375rem;
+  margin-top: 1rem;
+}
+
+.checkout .submit-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  /* border-radius: 4px; */
+  font-size: 18px;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.checkout input {
+  background-color: #000000;
+  color: white;
+}
+
+.checkout .submit-button:hover {
+  border: 1px solid rgb(216, 14, 14);
+}
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.checkout .submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.checkout .order-summary {
+  background-color: #000000;
+  padding: 10px;
+}
+
+.checkout .order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  /* border-bottom: 1px solid #dee2e6; */
+  color: white;
+}
+
+.checkout .item-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 1rem;
+}
+
+.checkout .item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.checkout .item-details {
+  flex-grow: 1;
+}
+
+.checkout .item-name {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.checkout .item-quantity {
+  font-size: 0.875rem;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.checkout .item-price {
+  font-weight: 500;
+}
+
+.checkout p {
+  font-size: 13px;
+  color: white;
+}
+
+.checkout .order-totals {
+  border-top: 1px solid #dee2e6;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  color: white;
+}
+
+.checkout .total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.checkout .order-total {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .checkout .name-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout .logo-container {
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.checkout .payment-logo,
+.checkout .shipping-logo {
+  max-height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .checkout input[type="text"],
+  .checkout input[type="email"],
+  .checkout input[type="tel"],
+  .checkout select {
+    width: 100%;
+    padding: 0.75rem; /* Increased padding */
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px; /* Increased font size */
+    background: black;
+    color: white;
+  }
+
+  .checkout select {
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px;
+    cursor: pointer;
+  }
+
+  .checkout select:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+.text-red-600 {
+  color: #dc2626;
+  font-size: 0.875rem;
+  padding: 8px;
+  background-color: #fef2f2;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Shipping Methods Container */
+.space-y-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shipping-method {
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.shipping-method:hover {
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Selected Shipping Method State */
+.shipping-method.border-blue-500 {
+  border-color: #3b82f6;
+  /* background-color: #eff6ff; */
+}
+
+/* Method Content Layout */
+.shipping-method .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+/* Align radio button, text, and price */
+.shipping-method .content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.shipping-method .content .details {
+  flex: 1;
+  padding-left: 16px; /* Add spacing between radio button and text */
+}
+
+.shipping-method .content .method-price {
+  margin-left: auto; /* Push price to the far right */
+  font-size: 14px;
+  font-weight: bold;
+  color: #1a202c;
+}
+
+/* Method Name */
+.method-name {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+.details pl-4 {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Method Description */
+.method-description {
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+/* Radio Button Styling */
+.shipping-method input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.shipping-method input[type="radio"]:checked {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+}
+
+.shipping-method input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.shipping-method input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Hover effect for the entire shipping method card */
+.shipping-method:hover input[type="radio"]:not(:checked) {
+  border-color: #93c5fd;
+}
+
+/* Space between price and radio button */
+.space-x-4 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .shipping-method .flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .shipping-method .flex > div:last-child {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .method-price {
+    margin-right: 0;
+  }
+  .shipping-method {
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+/* Responsive adjustments for shipping method */
+@media (max-width: 480px) {
+  .shipping-method .flex {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .shipping-method .method-price {
+    text-align: left;
+    width: 100%;
+  }
+
+  .shipping-method .content {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .shipping-method input[type="radio"] {
+    margin-bottom: 8px; /* Space for smaller layouts */
+  }
+  .shipping-method {
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+/* Fine-tuned layout for tablets and small desktops */
+@media (max-width: 768px) {
+  .shipping-method .flex {
+    gap: 1rem;
+  }
+  .shipping-method .method-price {
+    font-size: 0.875rem; /* Slightly reduce font size */
+  }
+
+  .shipping-method {
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+/* Animation for selection */
+@keyframes selectPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.shipping-method.border-blue-500 {
+  animation: selectPulse 0.5s ease-out;
+}

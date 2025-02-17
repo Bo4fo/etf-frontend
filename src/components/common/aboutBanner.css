@@ -1,0 +1,79 @@
+.aboutUs-banner-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  /* gap: 20px; */
+}
+
+.aboutUs-banner {
+  background-color: black;
+  color: #ffffff;
+  padding: 1px;
+  text-align: center;
+  /* font-family: monospace; */
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  display: inline-block;
+  animation: slide 10s linear infinite;
+}
+.aboutUs-banner h1 {
+  font-size: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Poppins, sans-serif;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutUs-banner {
+    font-size: 12px;
+    padding: 1px;
+    animation-duration: 30s;
+  }
+  .aboutUs-banner h1 {
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutUs-banner {
+    font-size: 12px;
+    padding: 1px;
+    animation-duration: 25s;
+  }
+  .aboutUs-banner h1 {
+    font-size: 45px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}
+
+@media (max-width: 320px) {
+  .aboutUs-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 20s;
+  }
+  .aboutUs-banner h1 {
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}

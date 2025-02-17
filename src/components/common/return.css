@@ -1,0 +1,79 @@
+.return-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  /* gap: 20px; */
+}
+
+.return-banner {
+  background-color: black;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  /* font-family: monospace; */
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  display: inline-block;
+  animation: slide 30s linear infinite;
+}
+.return-banner h1 {
+  font-size: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Poppins, sans-serif;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .return-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 30s;
+  }
+  .return-banner h1 {
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}
+
+@media (max-width: 480px) {
+  .return-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 25s;
+  }
+  .return-banner h1 {
+    font-size: 45px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}
+
+@media (max-width: 320px) {
+  .return-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 20s;
+  }
+  .return-banner h1 {
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Poppins, sans-serif;
+  }
+}

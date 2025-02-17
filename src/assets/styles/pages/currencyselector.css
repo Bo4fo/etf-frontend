@@ -1,0 +1,10 @@
+.currency-box{
+    display: flex;
+    flex-direction: row;
+    width: 60px;
+    justify-content: space-between;
+    color: white;
+}
+.text-currency{
+    font-size: 15px;
+}

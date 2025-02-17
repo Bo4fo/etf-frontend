@@ -1,0 +1,85 @@
+/* .contact-policy {
+  background-color: black;
+  color: white;
+  padding: 50px;
+  font-family: Poppins, sans-serif;
+  line-height: 1.6;
+  height: 100%;
+} */
+
+.contact-policy h5 {
+  font-size: 15px;
+  margin-bottom: 15px;
+  /* text-align: center; */
+  text-transform: uppercase;
+}
+
+.contact-policy p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .contact-policy {
+    padding: 15px;
+  }
+
+  .contact-policy h5 {
+    font-size: 15px;
+  }
+
+  .contact-policy p {
+    font-size: 14px;
+  }
+}
+
+/* Center the entire content */
+.contact-policy {
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background-color: #000;
+}
+
+/* Style for the horizontal line */
+hr {
+  width: 100%;
+  margin: 20px auto;
+  border: 0.2px solid white;
+}
+
+/* Contact Us Section */
+.contact-section {
+  margin: 20px 0;
+}
+
+.contact-section h5 {
+  font-size: 24px; /* Increase heading size */
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  font-size: 20px; /* Increase text size */
+  margin: 0;
+}
+
+/* Email Us Section */
+.email-section {
+  margin: 20px 0;
+}
+
+.email-section h5 {
+  font-size: 24px; /* Increase heading size */
+  margin-bottom: 10px;
+}
+
+.email-section p {
+  font-size: 20px; /* Increase text size */
+  margin: 0;
+}

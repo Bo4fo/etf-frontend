@@ -1,0 +1,34 @@
+import React from "react";
+import "../assets/styles/pages/shipping-policy.css";
+import ShippinPolicy from "../components/common/ShippingPolicy";
+
+const ShippingPolicy = () => {
+  return (
+    <div className="shipping-policy">
+      <ShippinPolicy />
+      {/* <h1>ABOUT US</h1> */}
+      <hr style={{ border: "0.2px solid white" }} />
+      <p>
+        ALL DELIVERIES ARE SUBJECT TO THE DELIVERY COSTS THAT WILL BE QUOTED AT
+        CHECKOUT. ALL COSTS ARE TO BE PAID BY THE CUSTOMER UNLESS STATED
+        OTHERWISE. YOU WILL RECEIVE A CONFIRMATION EMAIL ONCE YOUR ORDER HAS
+        BEEN PLACED AND SHIPPED WITH A TRACKING NUMBER.
+      </p>
+      <p>
+        PLEASE MAKE SURE TO TRACK YOUR PACKAGE AND BE AWARE IF CUSTOMS ARE
+        TRYING TO CONTACT YOU. WE CANNOT TAKE RESPONSIBILITY FOR ANY PACKAGE
+        ONCE IT IS IN YOUR COUNTRY. IF THERE ARE ANY OTHER PROBLEMS WITH CUSTOMS
+        / THE COUNTRY OFFICIALS NEED DOCUMENTATION OR CLARIFICATION PLEASE
+        CONTACT SHOP@CUNNINGZ.COM FOR MORE INFORMATION.
+      </p>
+      <p>
+        PLEASE NOTE A SIGNATURE IS REQUIRED TO RECEIVE YOUR ORDER SO PLEASE
+        ENSURE SOMEONE IS HOME OR YOU MAY ARRANGE ANOTHER TIME TO ATTEMPT
+        DELIVERY. FOR QUESTIONS REGARDING OUR SHIPPING POLICY PLEASE CONTACT
+        SHOP@CUNNINGZ.COM.
+      </p>
+    </div>
+  );
+};
+
+export default ShippingPolicy;

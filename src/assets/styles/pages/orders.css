@@ -1,0 +1,228 @@
+.orders-page-container {
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Poppins, sans-serif;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.toolbar h2 {
+  display: contents;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.account-tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  flex: 1;
+  background-color: #f1f1f1;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  border: solid 1px white;
+  background-color: #000000;
+  color: white;
+}
+
+.tab-button:hover {
+  background-color: #000000;
+  border: solid 1px white;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ffffff;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #000000;
+  font-weight: bold;
+}
+
+.profile-container,
+.wishlist-container {
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.start-shopping-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.start-shopping-btn:hover {
+  background-color: #525252;
+  transform: translateY(-2px);
+}
+
+.start-shopping-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Disabled State */
+.start-shopping-btn:disabled {
+  background-color: #ced4da; /* Grey background for disabled state */
+  color: #6c757d; /* Light grey text */
+  cursor: not-allowed; /* Change cursor for disabled state */
+  transform: none; /* Disable hover lift */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .start-shopping-btn {
+    font-size: 0.875rem; /* Slightly smaller text */
+    padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
+  }
+}
+
+.profile-details p {
+  margin: 10px 0;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .account-tabs {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    margin-bottom: 10px;
+  }
+
+  .orders-table thead {
+    display: none;
+  }
+
+  .orders-table tr {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .orders-table td {
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  .orders-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
+
+/* Container styling */
+.order-page-container {
+  padding: 20px;
+  font-family: Poppins, sans-serif;
+}
+
+/* Heading styling */
+.order-page-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Loading and error messages */
+.order-page-container p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Table styling */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.order-table th,
+.order-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.order-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.order-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.order-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive table for smaller screens */
+@media (max-width: 768px) {
+  .order-table {
+    font-size: 0.9rem;
+  }
+
+  .order-table th,
+  .order-table td {
+    padding: 8px;
+  }
+}

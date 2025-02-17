@@ -1,0 +1,109 @@
+.footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-top: solid 0.2px #ffffff;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.footer-icons {
+  padding-right: 10px;
+  display: flex;
+  gap: 15px;
+  font-size: var(--font-size-lg);
+}
+
+.footer-icon {
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-icon:hover {
+  color: var(--accent-color); /* Optional hover color */
+}
+
+/* Copyright Text in the Middle */
+.footer-copyright {
+  flex-grow: 2;
+  text-align: center;
+  font-size: var(--font-size-md);
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+/* Country & Language on the Right */
+.footer-options {
+  display: flex;
+  gap: 10px; /* Space between dropdowns */
+  align-items: center;
+  padding: 5px;
+}
+
+.country-select,
+.language-select {
+  padding: 5px;
+  font-size: var(--font-size-sm);
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.country-select:focus,
+.language-select:focus {
+  outline: none;
+  border-color: var(--accent-color); /* Optional focus color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .footer-icons,
+  .footer-options {
+    justify-content: center;
+  }
+
+  .footer-icons {
+    margin-bottom: 5px;
+  }
+
+  .footer-copyright {
+    margin: 5px 0;
+    font-size: var(--font-size-sm);
+  }
+  .footer-copyright {
+    flex-grow: 2;
+    text-align: center;
+    font-size: var(--font-size-md);
+    border-right: none;
+    border-left: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-icons,
+  .footer-options {
+    display: none;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .country-select,
+  .language-select {
+    font-size: var(
+      --font-size-xs
+    ); /* Smaller font size for very small screens */
+  }
+}

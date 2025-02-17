@@ -1,0 +1,55 @@
+.free-shipping-banner-container {
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.free-shipping-banner {
+  background-color: black;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  /* font-family: monospace; */
+  font-family: "Helvetica";
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  display: inline-block;
+  animation: slide 30s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .free-shipping-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 30s;
+  }
+}
+
+@media (max-width: 480px) {
+  .free-shipping-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 25s;
+  }
+}
+
+@media (max-width: 320px) {
+  .free-shipping-banner {
+    font-size: 12px;
+    padding: 10px;
+    animation-duration: 20s;
+  }
+}

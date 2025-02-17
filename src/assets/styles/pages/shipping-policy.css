@@ -1,0 +1,35 @@
+.shipping-policy {
+  background-color: black;
+  color: white;
+  padding: 50px;
+  font-family: Poppins, sans-serif;
+  line-height: 1.6;
+  height: 100%;
+}
+
+.shipping-policy h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.shipping-policy p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .shipping-policy {
+    padding: 15px;
+  }
+
+  .shipping-policy h1 {
+    font-size: 20px;
+  }
+
+  .shipping-policy p {
+    font-size: 14px;
+  }
+}

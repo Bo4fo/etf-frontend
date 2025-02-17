@@ -1,0 +1,51 @@
+/* Home Page Styling */
+.home-wrapper .home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background Video */
+.home-wrapper .background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Content Overlay */
+.home-wrapper .content-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Shop Now Button */
+.home-wrapper .shop-now-button {
+  background-color: #ff6347;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.home-wrapper .shop-now-button:hover {
+  background-color: #e5533f;
+}
+
+.home-wrapper .arrow-icon {
+  font-size: 1rem;
+}
