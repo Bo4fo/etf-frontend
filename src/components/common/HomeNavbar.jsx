@@ -11,10 +11,10 @@ import {
   faTimesCircle,
   faPlus,
   faMinus,
-  faEnvelope,
+  // faEnvelope,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
+// import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import debounce from "lodash.debounce";
 import axios from "axios";
 import CurrencyModal from "../common/CurrencyModal";
@@ -22,7 +22,7 @@ import CurrencySelectorSidebar from "../common/CurrencySelectorSidebar";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  // const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
@@ -67,14 +67,14 @@ function Navbar() {
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-    if (isSearchVisible) {
-      setIsSearchVisible(false);
-    }
+    // if (isSearchVisible) {
+    //   setIsSearchVisible(false);
+    // }
   };
 
-  const toggleSearch = () => {
-    setIsSearchVisible(!isSearchVisible);
-  };
+  // const toggleSearch = () => {
+  //   setIsSearchVisible(!isSearchVisible);
+  // };
 
   const handleClickOutside = (event) => {
     if (
@@ -93,11 +93,11 @@ function Navbar() {
     };
   }, [isOpen]);
 
-  const closeSearch = () => {
-    setIsSearchVisible(false);
-    setIsDropdownVisible(false);
-    setSearchQuery("");
-  };
+  // const closeSearch = () => {
+  //   setIsSearchVisible(false);
+  //   setIsDropdownVisible(false);
+  //   setSearchQuery("");
+  // };
 
   const toggleShopDropdown = () => {
     if (isCollectionsDropdownOpen) {
@@ -142,7 +142,7 @@ function Navbar() {
 
   const handleResultClick = (id) => {
     navigate(`/products/${id}`);
-    closeSearch();
+    // closeSearch();
   };
 
   useEffect(() => {
@@ -155,79 +155,36 @@ function Navbar() {
     <div className="homenav-wrapper">
       <nav className="navbar">
         <div className="sidelines">
-          <FaGripLines onClick={toggleSidebar} />
+          <span>Eternal Feels</span>
         </div>
 
-        <div className="navbar-logo">
+        {/* <div className="navbar-logo">
           <Link to="/">
             <img
               src="https://cunningz-ecommerce-item-image-1.s3.eu-north-1.amazonaws.com/CUNNINGZ_white_text.png"
               alt="navlogo"
             />
           </Link>
-        </div>
+        </div> */}
 
         <div className="navbar-icons">
-          <div className="user-icon" onClick={handleUserClick}>
-            <FontAwesomeIcon icon={faUser} />
-          </div>
-          <div className="search-icon">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="search-icon"
-              onClick={toggleSearch}
-            />
-          </div>
+          <div className="cart-icon">
+            <div className="shop-box">
+              <div className="shopbag" onClick={toggleCart}>
+                <span>Bag</span>
+                <FontAwesomeIcon
+                  icon={faShoppingCart}
+                  style={{ fontSize: "12px" }}
+                />
+                {cartItems.length > 0 && <span className="cart-dot"></span>}
+              </div>
+              <FaGripLines
+                onClick={toggleSidebar}
+                style={{ fontSize: "18px" }}
+              />
 
-          {isSearchVisible && (
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="search-input"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <FontAwesomeIcon
-                icon={faTimesCircle}
-                className="close-search-icon"
-                onClick={closeSearch}
-              />
-              {isDropdownVisible && (
-                <div className="search-dropdown">
-                  {searchResults.length > 0 ? (
-                    <div className="search-results-grid">
-                      {searchResults.map((product) => (
-                        <div
-                          key={product._id}
-                          className="search-dropdown-item"
-                          onClick={() => handleResultClick(product._id)}
-                        >
-                          <img
-                            src={product.imageUrl[0]}
-                            alt={product.name}
-                            className="search-dropdown-image"
-                          />
-                          <span className="search-dropdown-text">
-                            {product.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="search-no-results">
-                      Consider verifying your spelling or trying alternative
-                      keywords.
-                    </div>
-                  )}
-                </div>
-              )}
+              {cartItems.length > 0 && <span className="cart-dot"></span>}
             </div>
-          )}
-
-          <div className="cart-icon" onClick={toggleCart}>
-            <FontAwesomeIcon icon={faShoppingCart} />
-            {cartItems.length > 0 && <span className="cart-dot"></span>}
           </div>
         </div>
 
@@ -305,80 +262,9 @@ function Navbar() {
                 ))}
               </div>
             )}
-
-            <div className="links-container">
-              <div className="links-box">
-                <Link
-                  to="/contact"
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                >
-                  CONTACT
-                </Link>
-                <Link
-                  to="/return-policy"
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                >
-                  RETURN & REFUND POLICY
-                </Link>
-                <Link to="/terms" className="nav-link" onClick={toggleSidebar}>
-                  TERMS OF SERVICE
-                </Link>
-                <Link
-                  to="/shipping"
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                >
-                  SHIPPING POLICY
-                </Link>
-                <Link
-                  to="/about-us"
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                >
-                  ABOUT US
-                </Link>
-                <Link
-                  to="/about-iron"
-                  className="nav-link"
-                  onClick={toggleSidebar}
-                >
-                  ABOUT IRON BOY X CUNNINGZ
-                </Link>
-              </div>
-
-              <div className="search-container-side">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="search-input-side"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-                <FontAwesomeIcon icon={faSearch} className="search-icon" />
-              </div>
-            </div>
-
-            <div className="social-icons-side">
-              <FontAwesomeIcon icon={faInstagram} className="social-icon1" />
-              <FontAwesomeIcon icon={faYoutube} className="social-icon2" />
-              <FontAwesomeIcon icon={faEnvelope} className="social-icon3" />
-            </div>
-          </div>
-
-          {/* side Logo */}
-          <div className="sidebar-logo">
-            <Link to="/">
-              <img
-                src="https://cunningz-ecommerce-item-image-1.s3.eu-north-1.amazonaws.com/images/side-logo.jpg"
-                alt="Logo"
-                className="sidebar-logo-img"
-              />
-            </Link>
           </div>
         </div>
-
+        {/* 
         {isSearchVisible && (
           <div className="search-container">
             <input
@@ -394,7 +280,7 @@ function Navbar() {
               onClick={closeSearch}
             />
           </div>
-        )}
+        )} */}
       </nav>
     </div>
   );

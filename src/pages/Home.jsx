@@ -1,30 +1,82 @@
-import React, { useState, useEffect } from "react";
-import "../assets/styles/pages/home.css";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../assets/styles/pages/home.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  const containerRef = useRef(null);
   const [banners, setBanners] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [catalogs, setCatalogs] = useState([]);
+  const [cunningz, setCunningz] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showTitles, setShowTitles] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const BASE_URL =
     process.env.REACT_APP_BASE_URL || process.env.REACT_APP_API_URL;
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api";
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetchBanners();
+    const loadData = async () => {
+      try {
+        await Promise.all([fetchBanners(), fetchCatalogs()]);
+        setCunningz(false);
+        setIsDataLoaded(true);
+      } catch (error) {
+        console.error("Error loading initial data:", error);
+        setCunningz(false);
+      }
+    };
+
+    loadData();
   }, []);
+
+  useEffect(() => {
+    if (!isDataLoaded) return;
+
+    const handleScroll = () => {
+      if (containerRef.current) {
+        const scrollPosition = containerRef.current.scrollTop;
+        const windowHeight = containerRef.current.clientHeight;
+        const newIndex = Math.floor(scrollPosition / windowHeight);
+
+        setActiveIndex(newIndex);
+        setShowTitles(newIndex > 0);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      handleScroll();
+      container.addEventListener("scroll", handleScroll);
+      return () => container.removeEventListener("scroll", handleScroll);
+    }
+  }, [isDataLoaded]);
 
   const fetchBanners = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/banners`);
       setBanners(response.data);
-      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching banners:", error);
-      setIsLoading(false);
+    }
+  };
+
+  const fetchCatalogs = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/catalogs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCatalogs(response.data);
+    } catch (error) {
+      console.error("Error fetching catalogs:", error);
     }
   };
 
@@ -32,93 +84,90 @@ const Home = () => {
     navigate("/products");
   };
 
-  if (isLoading) {
-    return <div className="loading">Loading...</div>;
-  }
+  const handleCatalogClick = (catalogId) => {
+    navigate(`/collections/${catalogId}`);
+  };
 
-  if (banners.length === 0) {
+  if (cunningz) {
     return (
-      <div className="home" style={{ position: "relative", height: "100vh" }}>
-        <div
-          style={{
-            position: "relative",
-            zIndex: "1",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
-          <button className="shop-now-button" onClick={handleShopNowClick}>
-            Shop Now{" "}
-            <FontAwesomeIcon icon={faArrowRight} className="arrow-icon" />
-          </button>
-        </div>
+      <div className="loading">
+        <span className="drop-letter">c</span>
+        <span className="drop-letter">u</span>
+        <span className="drop-letter">n</span>
+        <span className="drop-letter">n</span>
+        <span className="drop-letter">i</span>
+        <span className="drop-letter">n</span>
+        <span className="drop-letter">g</span>
+        <span className="drop-letter">z</span>
       </div>
     );
   }
 
   return (
-    <div className="home" style={{ display: "flex", flexDirection: "column" }}>
-      {banners.map((banner, index) => (
-        <div
-          key={banner._id}
-          style={{
-            position: "relative",
-            height: "100vh",
-            width: "100%",
-          }}
-        >
-          {banner.fileType === "video" ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            >
-              <source src={banner.fileUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <img
-              src={banner.fileUrl}
-              alt={banner.name}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          )}
+    <div className="homebox">
+      <div className="home" ref={containerRef}>
+        <div className="banners-container">
+          {banners.map((banner, index) => (
+            <div key={index} className="banner-container">
+              {banner.fileType === "video" ? (
+                <video className="banner-media" autoPlay loop muted playsInline>
+                  <source src={banner.fileUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  className="banner-media"
+                  src={banner.fileUrl}
+                  alt={`Banner ${index + 1}`}
+                />
+              )}
 
-          {/* Show Shop Now button only on the first banner */}
-          {index === 0 && (
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                zIndex: "1",
-              }}
-            >
-              <button className="shop-now-button" onClick={handleShopNowClick}>
-                Shop Now{" "}
-                <FontAwesomeIcon icon={faArrowRight} className="arrow-icon" />
-              </button>
+              {index === 0 && (
+                <div className="center-content">
+                  <button
+                    className="shop-now-button"
+                    onClick={handleShopNowClick}
+                  >
+                    Shop Now{" "}
+                    <FontAwesomeIcon
+                      icon={faArrowRight}
+                      className="arrow-icon"
+                    />
+                  </button>
+                </div>
+              )}
             </div>
-          )}
+          ))}
         </div>
-      ))}
+
+        {/* Overlay Titles */}
+        {isDataLoaded && (
+          <div
+            className={`all-titles-container ${!showTitles ? "hidden" : ""}`}
+          >
+            {catalogs.map((catalog, index) => (
+              <div
+                key={catalog._id}
+                className={`title-overlay ${
+                  index === activeIndex - 1 ? "active" : ""
+                }`}
+                style={{
+                  transform: `translate(-50%, -50%) scale(${
+                    index === activeIndex - 1 ? 1 : 0.7
+                  })`,
+                  opacity: index === activeIndex - 1 ? 1 : 0.3,
+                  top: `${50 + (index - (activeIndex - 1)) * 10}%`,
+                  visibility: showTitles ? "visible" : "hidden",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleCatalogClick(catalog._id)}
+              >
+                {catalog.name}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

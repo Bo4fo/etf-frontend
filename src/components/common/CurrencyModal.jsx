@@ -25,7 +25,7 @@ const CurrencyModal = ({ onClose, onSelectCurrency }) => {
   return (
     <div className="currency-modal-overlay">
       <div className="currency-modal">
-        <h2>Welcome to Eternal Feels</h2>
+        <h2>Welcome to Cunningz</h2>
         <p>Please select your currency to continue to our online store.</p>
         <select
           value={selectedCurrency}

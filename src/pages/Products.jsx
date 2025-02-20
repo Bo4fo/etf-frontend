@@ -3,7 +3,7 @@ import "../assets/styles/pages/products.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
-import SkeletonLoader from "../components/common/SkeletonLoader";
+import { InfinitySpin } from "react-loader-spinner";
 
 const AllProducts = () => {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ const AllProducts = () => {
   const API_BASE_URL =
     process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api";
 
-  // Updated function to check if any filters are active
   const shouldShowClear = () => {
     const isPriceFilterActive =
       filterPriceMin > 0 ||
@@ -335,36 +334,43 @@ const AllProducts = () => {
           </div>
 
           <div className="product-grid">
-            {loading
-              ? Array.from({ length: visibleProducts }).map((_, index) => (
-                  <SkeletonLoader key={index} />
-                ))
-              : filteredProducts.slice(0, visibleProducts).map((product) => (
-                  <div
-                    key={product._id}
-                    className={`product-card ${
-                      product.stockStatus === "OUT_OF_STOCK" ? "disabled" : ""
-                    }`}
-                    onClick={() => navigate(`/products/${product._id}`)}
-                    style={{
-                      cursor:
-                        product.stockStatus === "OUT_OF_STOCK"
-                          ? "not-allowed"
-                          : "pointer",
-                    }}
-                  >
-                    <div className="product-image-container">
-                      <img src={product.imageUrl[0]} alt={product.name} />
-                      {product.stockStatus === "OUT_OF_STOCK" && (
-                        <div className="sold-out-overlay">Sold Out</div>
-                      )}
-                    </div>
-                    <div className="product-info">
-                      <h6>{product.name}</h6>
-                      <h6>{displayPrice(product.price)}</h6>
-                    </div>
+            {loading ? (
+              <div className="loading-animation">
+                <InfinitySpin
+                  visible={true}
+                  width="200"
+                  color="#ffffff"
+                  ariaLabel="infinity-spin-loading"
+                />
+              </div>
+            ) : (
+              filteredProducts.slice(0, visibleProducts).map((product) => (
+                <div
+                  key={product._id}
+                  className={`product-card ${
+                    product.stockStatus === "OUT_OF_STOCK" ? "disabled" : ""
+                  }`}
+                  onClick={() => navigate(`/products/${product._id}`)}
+                  style={{
+                    cursor:
+                      product.stockStatus === "OUT_OF_STOCK"
+                        ? "not-allowed"
+                        : "pointer",
+                  }}
+                >
+                  <div className="product-image-container">
+                    <img src={product.imageUrl[0]} alt={product.name} />
+                    {product.stockStatus === "OUT_OF_STOCK" && (
+                      <div className="sold-out-overlay">Sold Out</div>
+                    )}
                   </div>
-                ))}
+                  <div className="product-info">
+                    <h6>{product.name}</h6>
+                    <h6>{displayPrice(product.price)}</h6>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
 
           {visibleProducts < filteredProducts.length && (

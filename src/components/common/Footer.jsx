@@ -18,7 +18,7 @@ function Footer() {
 
       {/* Copyright Text in the Middle */}
       <div className="footer-copyright">
-        © {currentYear} Eternal Feels. All rights reserved.
+        © {currentYear} Cunningz. All rights reserved.
       </div>
 
       {/* Country & Language on the Right */}

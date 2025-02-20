@@ -541,3 +541,12 @@ input[type="number"] {
 .product-card:hover .product-image-container img {
   transform: scale(1.05);
 }
+
+.products-box .loading-animation {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
