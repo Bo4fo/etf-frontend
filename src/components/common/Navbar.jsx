@@ -1,447 +1,116 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import "../../assets/styles/components/navbar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaGripLines } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/CartContext";
-import {
-  faTimes,
-  faSearch,
-  faShoppingCart,
-  faTimesCircle,
-  faPlus,
-  faMinus,
-  faEnvelope,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import debounce from "lodash.debounce";
-import axios from "axios";
-import CurrencyModal from "../common/CurrencyModal";
-import CurrencySelectorSidebar from "../common/CurrencySelectorSidebar";
+import React, { useState } from "react";
+import { MdClose } from "react-icons/md";
+import { HiMenuAlt4 } from "react-icons/hi";
+import Logo from "../../assets/logos/ETERNAL FEELS.png";
+import "../../assets/styles/components/homenavbar.css";
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [isCollectionsDropdownOpen, setIsCollectionsDropdownOpen] =
-    useState(false);
-  const [catalogs, setCatalogs] = useState([]);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  // const [lastScrollY, setLastScrollY] = useState(0);
-  const sidebarRef = useRef(null);
-  const navigate = useNavigate();
-  const [showCurrencyModal, setShowCurrencyModal] = useState(false);
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { toggleCart, cartItems, setCurrency } = useContext(CartContext);
-
-  const token = localStorage.getItem("token");
-  const API_BASE_URL =
-    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api";
-
-  useEffect(() => {
-    const fetchCatalogs = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}/catalogs`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setCatalogs(response.data);
-      } catch (error) {
-        console.error("Error fetching catalogs:", error);
-      }
-    };
-
-    fetchCatalogs();
-  }, []);
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (isOpen) return;
-
-      const currentScrollY = window.scrollY;
-
-      // Always show the navbar when at the top of the page
-      if (currentScrollY === 0) {
-        setIsNavbarVisible(true);
-      } else {
-        // Hide the navbar when scrolling down, show when scrolling up
-        setIsNavbarVisible(currentScrollY < lastScrollY);
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isOpen]);
-
-  const handleUserClick = () => {
-    if (!token) {
-      navigate("/login");
-    } else {
-      navigate("/orders");
-    }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-    if (isSearchVisible) {
-      setIsSearchVisible(false);
-    }
-  };
-
-  const toggleSearch = () => {
-    setIsSearchVisible(!isSearchVisible);
-  };
-
-  const handleClickOutside = (event) => {
-    if (
-      sidebarRef.current &&
-      isOpen &&
-      !sidebarRef.current.contains(event.target)
-    ) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
-  const closeSearch = () => {
-    setIsSearchVisible(false);
-    setIsDropdownVisible(false);
-    setSearchQuery("");
-  };
-
-  const toggleShopDropdown = () => {
-    if (isCollectionsDropdownOpen) {
-      setIsCollectionsDropdownOpen(false);
-    }
-    setIsShopDropdownOpen(!isShopDropdownOpen);
-  };
-
-  const toggleCollectionsDropdown = () => {
-    if (isShopDropdownOpen) {
-      setIsShopDropdownOpen(false);
-    }
-    setIsCollectionsDropdownOpen(!isCollectionsDropdownOpen);
-  };
-
-  const handleSearchChange = (event) => {
-    const query = event.target.value;
-    setSearchQuery(query);
-
-    if (query) {
-      debouncedFetchSearchResults(query);
-    } else {
-      setSearchResults([]);
-      setIsDropdownVisible(false);
-    }
-  };
-
-  const fetchSearchResults = async (query) => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/products/search`, {
-        params: { query },
-      });
-      setSearchResults(response.data);
-      setIsDropdownVisible(true);
-    } catch (error) {
-      console.error("Error fetching search results:", error.message);
-      setSearchResults([]);
-    }
-  };
-
-  const debouncedFetchSearchResults = debounce(fetchSearchResults, 300);
-
-  const handleResultClick = (id) => {
-    navigate(`/products/${id}`);
-    closeSearch();
-  };
-
-  useEffect(() => {
-    return () => {
-      debouncedFetchSearchResults.cancel();
-    };
-  }, []);
 
   return (
-    <div className="nav-wrapper">
-      <div
-        className={`nav-show-wrapper ${isNavbarVisible ? "visible" : "hidden"}`}
-      >
-        <nav className="navbar">
-          <div className="sidelines">
-            <FaGripLines onClick={toggleSidebar} />
-          </div>
-
-          <div className="navbar-logo">
-            <Link to="/">
-              <img
-                src="https://cunningz-ecommerce-item-image-1.s3.eu-north-1.amazonaws.com/images/navlogo.png"
-                alt="navlogo"
-              />
-            </Link>
-          </div>
-
-          <div className="navbar-icons">
-            <div className="user-icon" onClick={handleUserClick}>
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            <div className="search-icon">
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="search-icon"
-                onClick={toggleSearch}
-              />
-            </div>
-
-            {isSearchVisible && (
-              <div className="search-container">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  className="search-input"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-                <FontAwesomeIcon
-                  icon={faTimesCircle}
-                  className="close-search-icon"
-                  onClick={closeSearch}
-                />
-                {isDropdownVisible && (
-                  <div className="search-dropdown">
-                    {searchResults.length > 0 ? (
-                      <div className="search-results-grid">
-                        {searchResults.map((product) => (
-                          <div
-                            key={product._id}
-                            className="search-dropdown-item"
-                            onClick={() => handleResultClick(product._id)}
-                          >
-                            <img
-                              src={product.imageUrl[0]}
-                              alt={product.name}
-                              className="search-dropdown-image"
-                            />
-                            <span className="search-dropdown-text">
-                              {product.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="search-no-results">
-                        Consider verifying your spelling or trying alternative
-                        keywords.
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-
-            <div className="cart-icon" onClick={toggleCart}>
-              <FontAwesomeIcon icon={faShoppingCart} />
-              {cartItems.length > 0 && <span className="cart-dot"></span>}
-            </div>
-          </div>
-
-          <div className={`sidebar ${isOpen ? "open" : ""}`} ref={sidebarRef}>
-            <button className="close-btn" onClick={toggleSidebar}>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-
-            {/* Currency Selector  */}
-            <CurrencySelectorSidebar
-              setShowCurrencyModal={setShowCurrencyModal}
+    <header className={`header ${isMenuOpen ? "menu-open" : ""}`}>
+      <div className="header-primary">
+        <div className="header-logo">
+          <a href="/" aria-label="Homepage">
+            <img
+              src={Logo}
+              alt="Logo"
+              className={isMenuOpen ? "text-white" : "text-black"}
             />
-            {showCurrencyModal && (
-              <CurrencyModal
-                onClose={() => setShowCurrencyModal(false)}
-                onSelectCurrency={(selectedCurrency) => {
-                  setCurrency(selectedCurrency);
-                  setShowCurrencyModal(false);
-                }}
-              />
-            )}
+          </a>
+        </div>
+        <div className="header-links">
+          <a
+            href="/collections/shop-all"
+            className={isMenuOpen ? "text-white" : "text-black"}
+          >
+            SHOP ALL
+          </a>
+          <a
+            href="/pages/photos-and-videos"
+            className={isMenuOpen ? "text-white" : "text-black"}
+          >
+            PHOTOS AND VIDEOS
+          </a>
+          <a
+            href="/pages/customer-support"
+            className={isMenuOpen ? "text-white" : "text-black"}
+          >
+            CUSTOMER SUPPORT
+          </a>
+          <a
+            href="/pages/stockists"
+            className={isMenuOpen ? "text-white" : "text-black"}
+          >
+            STOCKISTS
+          </a>
+          <a
+            href="/track-your-order"
+            className={isMenuOpen ? "text-white" : "text-black"}
+          >
+            TRACK YOUR ORDER
+          </a>
+        </div>
+      </div>
 
-            <div className="navbar-links">
-              {/* Shop Dropdown */}
-              <span className="nav-link navstyle" onClick={toggleShopDropdown}>
-                <h1>SHOP</h1>
-                <FontAwesomeIcon
-                  icon={isShopDropdownOpen ? faMinus : faPlus}
-                  className="plus-icon"
-                />
-              </span>
-              {isShopDropdownOpen && (
-                <div className="dropdown">
-                  <Link
-                    to="/products"
-                    className="dropdown-link"
-                    onClick={toggleSidebar}
-                  >
-                    VIEW ALL
-                  </Link>
-                  <Link
-                    to="/new-arrivals"
-                    className="dropdown-link"
-                    onClick={toggleSidebar}
-                  >
-                    NEW ARRIVALS
-                  </Link>
-                </div>
-              )}
+      <div className="header-secondary">
+        <span
+          className={`header-cart ${isMenuOpen ? "text-white" : "text-black"}`}
+          role="button"
+          aria-label="Cart"
+        >
+          Bag (2)
+        </span>
+        <button
+          className="menu-toggle-btn"
+          onClick={toggleMenu}
+          aria-label="Toggle Menu"
+        >
+          {isMenuOpen ? (
+            <MdClose
+              className={`menu-icon ${isMenuOpen ? "rotate" : ""} text-white`}
+            />
+          ) : (
+            <HiMenuAlt4
+              className="menu-icon text-black"
+              style={{ color: "white" }}
+            />
+          )}
+        </button>
+      </div>
 
-              {/* Collections Dropdown */}
-              <span
-                className="nav-link navstyle"
-                onClick={toggleCollectionsDropdown}
-              >
-                <h1>COLLECTIONS</h1>
-                <FontAwesomeIcon
-                  icon={isCollectionsDropdownOpen ? faMinus : faPlus}
-                  className="plus-icon"
-                />
-              </span>
-              {isCollectionsDropdownOpen && (
-                <div className="dropdown">
-                  {catalogs.map((catalog) => (
-                    <div
-                      key={catalog._id}
-                      className="dropdown-link"
-                      onClick={() => {
-                        navigate(`/collections/${catalog._id}`);
-                        toggleSidebar();
-                      }}
-                    >
-                      {catalog.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="links-container">
-                <div className="links-box">
-                  <Link
-                    to="/contact"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    CONTACT
-                  </Link>
-                  <Link
-                    to="/return-policy"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    RETURN & REFUND POLICY
-                  </Link>
-                  <Link
-                    to="/terms"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    TERMS OF SERVICE
-                  </Link>
-                  <Link
-                    to="/shipping"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    SHIPPING POLICY
-                  </Link>
-                  <Link
-                    to="/about-us"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    ABOUT US
-                  </Link>
-                  <Link
-                    to="/about-iron"
-                    className="nav-link"
-                    onClick={toggleSidebar}
-                  >
-                    ABOUT IRON BOY X CUNNINGZ
-                  </Link>
-                </div>
-
-                <div className="search-container-side">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="search-input-side"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                  <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                </div>
-              </div>
-
-              <div className="social-icons-side">
-                <FontAwesomeIcon icon={faInstagram} className="social-icon1" />
-                <FontAwesomeIcon icon={faYoutube} className="social-icon2" />
-                <FontAwesomeIcon icon={faEnvelope} className="social-icon3" />
-              </div>
-            </div>
-
-            {/* Logo at the bottom of the sidebar */}
-            <div className="sidebar-logo">
-              <Link to="/">
-                <img
-                  src="https://cunningz-ecommerce-item-image-1.s3.eu-north-1.amazonaws.com/images/side-logo.jpg"
-                  alt="Logo"
-                  className="sidebar-logo-img"
-                />
-              </Link>
-            </div>
+      <div
+        className={`header-sidebar ${
+          isMenuOpen ? "header-sidebar--visible" : ""
+        }`}
+      >
+        <div className="header-sidebar-menu">
+          <div className="shop-all-box">
+            <a href="/collections/shop-all" onClick={toggleMenu}>
+              SHOP ALL
+            </a>
           </div>
 
-          {isSearchVisible && (
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="search-input"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <FontAwesomeIcon
-                icon={faTimesCircle}
-                className="close-search-icon"
-                onClick={closeSearch}
-              />
-            </div>
-          )}
-        </nav>
+          <a href="/pages/photos-and-videos" onClick={toggleMenu}>
+            PHOTOS AND VIDEOS
+          </a>
+          <a href="/pages/customer-support" onClick={toggleMenu}>
+            CUSTOMER SUPPORT
+          </a>
+          <a href="/pages/stockists" onClick={toggleMenu}>
+            STOCKISTS
+          </a>
+          <a href="/track-your-order" onClick={toggleMenu}>
+            TRACK YOUR ORDER
+          </a>
+        </div>
       </div>
-    </div>
+    </header>
   );
-}
+};
 
-export default Navbar;
+export default Header;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../assets/styles/pages/home.css";
@@ -80,9 +80,9 @@ const Home = () => {
     }
   };
 
-  const handleShopNowClick = () => {
-    navigate("/products");
-  };
+  // const handleShopNowClick = () => {
+  //   navigate("/products");
+  // };
 
   const handleCatalogClick = (catalogId) => {
     navigate(`/collections/${catalogId}`);
@@ -122,7 +122,7 @@ const Home = () => {
                 />
               )}
 
-              {index === 0 && (
+              {/* {index === 0 && (
                 <div className="center-content">
                   <button
                     className="shop-now-button"
@@ -135,7 +135,7 @@ const Home = () => {
                     />
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>
